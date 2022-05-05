@@ -7,12 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_produto")
+@Table(name="tb_produto")
 public class Produto {
 
 	@Id
@@ -20,15 +20,13 @@ public class Produto {
 	private long id;
 	
 	@NotBlank
-	private double preco;
-	
-	@NotBlank
-	@Size(min = 3, max = 255)
 	private String nome;
 	
 	@NotBlank
-	@Size(min = 3, max = 1000)
 	private String descricao;
+	
+	@NotNull
+	private double preco;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
@@ -40,14 +38,6 @@ public class Produto {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
 	}
 
 	public String getNome() {
@@ -66,6 +56,14 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -73,6 +71,9 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
+	
+	
 	
 	
 	
